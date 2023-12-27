@@ -1,0 +1,17 @@
+[package]
+name = "dia-soroban-random-oracle"
+edition = "2021"
+version.workspace = true
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+dia-soroban-utils = { workspace = true }
+soroban-sdk = { workspace = true }
+
+[dev_dependencies]
+soroban-sdk = { workspace = true, features = ["testutils"] }
+
+[features]
+testutils = ["soroban-sdk/testutils"]
