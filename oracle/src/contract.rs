@@ -1,4 +1,3 @@
-use dia_soroban_utils::ttl::extend_instance_ttl;
 use soroban_sdk::{contract, contractimpl, Address, Env, String, Vec};
 
 use crate::admin::{has_admin, read_admin, write_admin};
@@ -17,12 +16,10 @@ impl OracleContract {
     }
 
     pub fn admin(e: Env) -> Address {
-        extend_instance_ttl(&e);
         read_admin(&e)
     }
 
     pub fn get_value(e: Env, key: String) -> OracleValue {
-        extend_instance_ttl(&e);
         read_oracle_value(&e, key)
     }
 
@@ -30,7 +27,6 @@ impl OracleContract {
         let admin = read_admin(&e);
         admin.require_auth();
 
-        extend_instance_ttl(&e);
         write_oracle_value(&e, key.clone(), &value);
         events::oracle_updated(&e, key, value)
     }
@@ -40,8 +36,6 @@ impl OracleContract {
 
         let admin = read_admin(&e);
         admin.require_auth();
-
-        extend_instance_ttl(&e);
 
         for (key, value) in keys.iter().zip(values.iter()) {
             write_oracle_value(&e, key.clone(), &value);
@@ -53,7 +47,6 @@ impl OracleContract {
         let admin = read_admin(&e);
         admin.require_auth();
 
-        extend_instance_ttl(&e);
         write_admin(&e, &new_admin);
         events::admin_changed(&e, new_admin)
     }

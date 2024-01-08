@@ -7,7 +7,6 @@ version.workspace = true
 crate-type = ["cdylib"]
 
 [dependencies]
-dia-soroban-utils = { workspace = true }
 soroban-sdk = { workspace = true }
 
 [dev_dependencies]

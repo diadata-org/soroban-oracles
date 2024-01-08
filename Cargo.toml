@@ -1,6 +1,6 @@
 [workspace]
 resolver = "2"
-members = ["utils", "oracle", "random"]
+members = ["oracle", "random"]
 
 [workspace.package]
 version = "0.1.0"
@@ -20,5 +20,4 @@ inherits = "release"
 debug-assertions = true
 
 [workspace.dependencies]
-dia-soroban-utils = { path = "utils" }
-soroban-sdk = "20.0.0"
+soroban-sdk = "20.0.3"

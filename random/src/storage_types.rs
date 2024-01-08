@@ -1,5 +1,6 @@
-use dia_soroban_utils::ttl::DAY_IN_LEDGERS;
 use soroban_sdk::{contracttype, String};
+
+pub const DAY_IN_LEDGERS: u32 = 17280;
 
 pub(crate) const VALUE_TTL_BUMP: u32 = 3 * DAY_IN_LEDGERS;
 pub(crate) const VALUE_TTL_THRESHOLD: u32 = VALUE_TTL_BUMP - DAY_IN_LEDGERS;

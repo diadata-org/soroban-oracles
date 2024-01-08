@@ -1,7 +1,0 @@
-[package]
-name = "dia-soroban-utils"
-edition = "2021"
-version.workspace = true
-
-[dependencies]
-soroban-sdk = { workspace = true }
