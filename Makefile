@@ -1,19 +1,27 @@
-.SILENT:
-.PHONY: build fmt clean test all
+.PHONY: build test fmt clean all
+.DEFAULT_GOAL: build
 
-build:
-	soroban contract build
-	@ls -l target/wasm32-unknown-unknown/release/*.wasm
-
-fmt:
-	cargo fmt --all
-
-clean:
-	cargo clean
-
-test: build
-	cargo test
+$MAKEFILES = $(shell find . -maxdepth 3 -type f -name Makefile)
+SUBDIRS   = $(filter-out ./,$(dir $($MAKEFILES)))
 
 all: test
 
-.DEFAULT_GOAL := all
+build:
+	@for dir in $(SUBDIRS) ; do \
+		$(MAKE) -C $$dir build || break; \
+	done
+
+test: build
+	@for dir in $(SUBDIRS) ; do \
+		$(MAKE) -C $$dir test || break; \
+	done
+
+fmt:
+	@for dir in $(SUBDIRS) ; do \
+		$(MAKE) -C $$dir fmt || break; \
+	done
+
+clean:
+	@for dir in $(SUBDIRS) ; do \
+		$(MAKE) -C $$dir clean || break; \
+	done
