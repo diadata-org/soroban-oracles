@@ -9,7 +9,6 @@ test: build
 build:
 	soroban contract build
 	soroban contract optimize --wasm target/wasm32-unknown-unknown/release/dia_soroban_random_oracle.wasm
-	@ls -l target/wasm32-unknown-unknown/release/*.wasm
 
 fmt:
 	cargo fmt --all
