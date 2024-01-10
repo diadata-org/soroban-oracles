@@ -1,6 +1,6 @@
 use soroban_sdk::{Env, String};
 
-use crate::storage_types::{DataKey, RandomValue, VALUE_TTL_BUMP, VALUE_TTL_THRESHOLD};
+use crate::storage_types::{DataKey, RandomValue, VALUE_TTL_BUMP};
 
 pub fn read_oracle_value(e: &Env, round: u128) -> RandomValue {
     let key = DataKey::Value(round);
@@ -8,7 +8,7 @@ pub fn read_oracle_value(e: &Env, round: u128) -> RandomValue {
     if let Some(value) = e.storage().temporary().get(&key) {
         e.storage()
             .temporary()
-            .extend_ttl(&key, VALUE_TTL_THRESHOLD, VALUE_TTL_BUMP);
+            .extend_ttl(&key, VALUE_TTL_BUMP, VALUE_TTL_BUMP);
         value
     } else {
         let empty = String::from_str(&e, "");
@@ -25,5 +25,5 @@ pub fn write_oracle_value(e: &Env, round: u128, value: &RandomValue) {
     e.storage().temporary().set(&key, value);
     e.storage()
         .temporary()
-        .extend_ttl(&key, VALUE_TTL_THRESHOLD, VALUE_TTL_BUMP)
+        .extend_ttl(&key, VALUE_TTL_BUMP, VALUE_TTL_BUMP)
 }
