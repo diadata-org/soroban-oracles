@@ -12,7 +12,7 @@ This repository contains DIA oracle smart contracts for Soroban network on Stell
 
 ## Installing dependencies
 
-First, you'll need to install the `wasm32-unknown-unknown` compilation target for Rust:
+First, you'll need to install the `wasm32-unknown-unknown` build target for Rust:
 
 ```sh
 rustup target add wasm32-unknown-unknown
