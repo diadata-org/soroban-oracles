@@ -147,3 +147,16 @@ fn test_change_admin() {
 
     assert_eq!(oracle.admin(), new_admin);
 }
+
+#[test]
+#[should_panic(expected = "invalid address")]
+fn test_zero_address() {
+    let e = Env::default();
+    e.mock_all_auths();
+
+    let old_admin = Address::generate(&e);
+    let new_admin = Address::from_string(&String::from_bytes(&e, storage_types::ZERO_ADDRESS));
+
+    let oracle = create_oracle_contract(&e, &old_admin);
+    oracle.change_admin(&new_admin);
+}

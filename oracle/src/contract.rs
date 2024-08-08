@@ -3,7 +3,7 @@ use soroban_sdk::{contract, contractimpl, Address, Env, String, Vec};
 use crate::admin::{has_admin, read_admin, write_admin};
 use crate::events;
 use crate::oracle::{read_oracle_value, write_oracle_value};
-use crate::storage_types::OracleValue;
+use crate::storage_types::{OracleValue, ZERO_ADDRESS};
 
 #[contract]
 pub struct OracleContract;
@@ -44,6 +44,12 @@ impl OracleContract {
     }
 
     pub fn change_admin(e: Env, new_admin: Address) {
+        assert_ne!(
+            new_admin,
+            Address::from_string(&String::from_bytes(&e, ZERO_ADDRESS)),
+            "invalid address"
+        );
+
         let admin = read_admin(&e);
         admin.require_auth();
 

@@ -1,10 +1,10 @@
-use soroban_sdk::{contract, contractimpl, Address, Env};
+use soroban_sdk::{contract, contractimpl, Address, Env, String};
 
 use crate::admin::{has_admin, read_admin, write_admin};
 use crate::events;
 use crate::last_round::{read_last_round, write_last_round};
 use crate::oracle::{read_oracle_value, write_oracle_value};
-use crate::storage_types::RandomValue;
+use crate::storage_types::{RandomValue, ZERO_ADDRESS};
 
 #[contract]
 pub struct RandomOracleContract;
@@ -25,10 +25,12 @@ impl RandomOracleContract {
     }
 
     pub fn get_random_value(e: Env, round: u128) -> RandomValue {
-        read_oracle_value(&e, round)
+        read_oracle_value(&e, round).expect("invalid round")
     }
 
     pub fn set_random_value(e: Env, round: u128, value: RandomValue) {
+        assert!(read_last_round(&e) < round, "old round");
+
         let admin = read_admin(&e);
         admin.require_auth();
 
@@ -38,6 +40,12 @@ impl RandomOracleContract {
     }
 
     pub fn change_admin(e: Env, new_admin: Address) {
+        assert_ne!(
+            new_admin,
+            Address::from_string(&String::from_bytes(&e, ZERO_ADDRESS)),
+            "invalid address"
+        );
+
         let admin = read_admin(&e);
         admin.require_auth();
 
