@@ -18,19 +18,19 @@ First, you'll need to install the `wasm32-unknown-unknown` build target for Rust
 rustup target add wasm32-unknown-unknown
 ```
 
-Then install [soroban-cli](https://soroban.stellar.org/docs/reference/soroban-cli) with the `opt` feature:
+Then install [stellar-cli](https://github.com/stellar/stellar-cli) with the `opt` feature:
 
 ```sh
-cargo install --locked --version 20.1.1 soroban-cli --features opt
+cargo install --locked --version 21.3.0 stellar-cli --features opt
 ```
 
-> Additionaly, you can configure shell autocompletion for soroban-cli (replace bash if you're using another shell):
+> Additionaly, you can configure shell autocompletion for stellar-cli (replace bash if you're using another shell):
 >
 > ```sh
 > echo "source <(soroban completion --shell bash)" >> ~/.bashrc
 > ```
 
-After that, you'll need to configure soroban-cli to deploy and interact with oracle smart contracts. This example uses testnet configuration:
+After that, you'll need to configure stellar-cli to deploy and interact with oracle smart contracts. This example uses testnet configuration:
 
 ```sh
 # Add testnet network

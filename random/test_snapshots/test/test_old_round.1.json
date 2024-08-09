@@ -17,7 +17,7 @@
                 {
                   "u128": {
                     "hi": 0,
-                    "lo": 100
+                    "lo": 2
                   }
                 },
                 {
@@ -27,7 +27,7 @@
                         "symbol": "prev_signature"
                       },
                       "val": {
-                        "string": "prev signature"
+                        "string": "prev_signature"
                       }
                     },
                     {
@@ -35,7 +35,7 @@
                         "symbol": "randomness"
                       },
                       "val": {
-                        "string": "random bytes"
+                        "string": "randomness"
                       }
                     },
                     {
@@ -55,7 +55,6 @@
         }
       ]
     ],
-    [],
     []
   ],
   "ledger": {
@@ -113,7 +112,7 @@
                 {
                   "u128": {
                     "hi": 0,
-                    "lo": 100
+                    "lo": 2
                   }
                 }
               ]
@@ -136,7 +135,7 @@
                     {
                       "u128": {
                         "hi": 0,
-                        "lo": 100
+                        "lo": 2
                       }
                     }
                   ]
@@ -149,7 +148,7 @@
                         "symbol": "prev_signature"
                       },
                       "val": {
-                        "string": "prev signature"
+                        "string": "prev_signature"
                       }
                     },
                     {
@@ -157,7 +156,7 @@
                         "symbol": "randomness"
                       },
                       "val": {
-                        "string": "random bytes"
+                        "string": "randomness"
                       }
                     },
                     {
@@ -223,7 +222,7 @@
                         "val": {
                           "u128": {
                             "hi": 0,
-                            "lo": 100
+                            "lo": 2
                           }
                         }
                       }
@@ -331,7 +330,7 @@
                 {
                   "u128": {
                     "hi": 0,
-                    "lo": 100
+                    "lo": 2
                   }
                 },
                 {
@@ -341,7 +340,7 @@
                         "symbol": "prev_signature"
                       },
                       "val": {
-                        "string": "prev signature"
+                        "string": "prev_signature"
                       }
                     },
                     {
@@ -349,7 +348,7 @@
                         "symbol": "randomness"
                       },
                       "val": {
-                        "string": "random bytes"
+                        "string": "randomness"
                       }
                     },
                     {
@@ -386,7 +385,7 @@
                 {
                   "u128": {
                     "hi": 0,
-                    "lo": 100
+                    "lo": 2
                   }
                 },
                 {
@@ -396,7 +395,7 @@
                         "symbol": "prev_signature"
                       },
                       "val": {
-                        "string": "prev signature"
+                        "string": "prev_signature"
                       }
                     },
                     {
@@ -404,7 +403,7 @@
                         "symbol": "randomness"
                       },
                       "val": {
-                        "string": "random bytes"
+                        "string": "randomness"
                       }
                     },
                     {
@@ -460,10 +459,47 @@
                 "bytes": "0000000000000000000000000000000000000000000000000000000000000002"
               },
               {
-                "symbol": "last_round"
+                "symbol": "set_random_value"
               }
             ],
-            "data": "void"
+            "data": {
+              "vec": [
+                {
+                  "u128": {
+                    "hi": 0,
+                    "lo": 1
+                  }
+                },
+                {
+                  "map": [
+                    {
+                      "key": {
+                        "symbol": "prev_signature"
+                      },
+                      "val": {
+                        "string": "prev_signature"
+                      }
+                    },
+                    {
+                      "key": {
+                        "symbol": "randomness"
+                      },
+                      "val": {
+                        "string": "randomness"
+                      }
+                    },
+                    {
+                      "key": {
+                        "symbol": "signature"
+                      },
+                      "val": {
+                        "string": "signature"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
           }
         }
       },
@@ -478,17 +514,144 @@
           "v0": {
             "topics": [
               {
-                "symbol": "fn_return"
-              },
-              {
-                "symbol": "last_round"
+                "symbol": "log"
               }
             ],
             "data": {
-              "u128": {
-                "hi": 0,
-                "lo": 100
+              "vec": [
+                {
+                  "string": "caught panic 'old round' from contract function 'Symbol(obj#71)'"
+                },
+                {
+                  "u128": {
+                    "hi": 0,
+                    "lo": 1
+                  }
+                },
+                {
+                  "map": [
+                    {
+                      "key": {
+                        "symbol": "prev_signature"
+                      },
+                      "val": {
+                        "string": "prev_signature"
+                      }
+                    },
+                    {
+                      "key": {
+                        "symbol": "randomness"
+                      },
+                      "val": {
+                        "string": "randomness"
+                      }
+                    },
+                    {
+                      "key": {
+                        "symbol": "signature"
+                      },
+                      "val": {
+                        "string": "signature"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      },
+      "failed_call": true
+    },
+    {
+      "event": {
+        "ext": "v0",
+        "contract_id": "0000000000000000000000000000000000000000000000000000000000000002",
+        "type_": "diagnostic",
+        "body": {
+          "v0": {
+            "topics": [
+              {
+                "symbol": "error"
+              },
+              {
+                "error": {
+                  "wasm_vm": "invalid_action"
+                }
               }
+            ],
+            "data": {
+              "string": "caught error from function"
+            }
+          }
+        }
+      },
+      "failed_call": true
+    },
+    {
+      "event": {
+        "ext": "v0",
+        "contract_id": null,
+        "type_": "diagnostic",
+        "body": {
+          "v0": {
+            "topics": [
+              {
+                "symbol": "error"
+              },
+              {
+                "error": {
+                  "wasm_vm": "invalid_action"
+                }
+              }
+            ],
+            "data": {
+              "vec": [
+                {
+                  "string": "contract call failed"
+                },
+                {
+                  "symbol": "set_random_value"
+                },
+                {
+                  "vec": [
+                    {
+                      "u128": {
+                        "hi": 0,
+                        "lo": 1
+                      }
+                    },
+                    {
+                      "map": [
+                        {
+                          "key": {
+                            "symbol": "prev_signature"
+                          },
+                          "val": {
+                            "string": "prev_signature"
+                          }
+                        },
+                        {
+                          "key": {
+                            "symbol": "randomness"
+                          },
+                          "val": {
+                            "string": "randomness"
+                          }
+                        },
+                        {
+                          "key": {
+                            "symbol": "signature"
+                          },
+                          "val": {
+                            "string": "signature"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
             }
           }
         }
@@ -504,68 +667,16 @@
           "v0": {
             "topics": [
               {
-                "symbol": "fn_call"
+                "symbol": "error"
               },
               {
-                "bytes": "0000000000000000000000000000000000000000000000000000000000000002"
-              },
-              {
-                "symbol": "get_random_value"
-              }
-            ],
-            "data": {
-              "u128": {
-                "hi": 0,
-                "lo": 100
-              }
-            }
-          }
-        }
-      },
-      "failed_call": false
-    },
-    {
-      "event": {
-        "ext": "v0",
-        "contract_id": "0000000000000000000000000000000000000000000000000000000000000002",
-        "type_": "diagnostic",
-        "body": {
-          "v0": {
-            "topics": [
-              {
-                "symbol": "fn_return"
-              },
-              {
-                "symbol": "get_random_value"
-              }
-            ],
-            "data": {
-              "map": [
-                {
-                  "key": {
-                    "symbol": "prev_signature"
-                  },
-                  "val": {
-                    "string": "prev signature"
-                  }
-                },
-                {
-                  "key": {
-                    "symbol": "randomness"
-                  },
-                  "val": {
-                    "string": "random bytes"
-                  }
-                },
-                {
-                  "key": {
-                    "symbol": "signature"
-                  },
-                  "val": {
-                    "string": "signature"
-                  }
+                "error": {
+                  "wasm_vm": "invalid_action"
                 }
-              ]
+              }
+            ],
+            "data": {
+              "string": "escalating error to panic"
             }
           }
         }

@@ -1,22 +1,17 @@
-use soroban_sdk::{Env, String};
+use soroban_sdk::Env;
 
-use crate::storage_types::{DataKey, RandomValue, VALUE_LIFETIME_THRESHOLD, VALUE_BUMP_AMOUNT};
+use crate::storage_types::{DataKey, RandomValue, VALUE_BUMP_AMOUNT, VALUE_LIFETIME_THRESHOLD};
 
-pub fn read_oracle_value(e: &Env, round: u128) -> RandomValue {
+pub fn read_oracle_value(e: &Env, round: u128) -> Option<RandomValue> {
     let key = DataKey::Value(round);
 
     if let Some(value) = e.storage().temporary().get(&key) {
         e.storage()
             .temporary()
             .extend_ttl(&key, VALUE_LIFETIME_THRESHOLD, VALUE_BUMP_AMOUNT);
-        value
+        Some(value)
     } else {
-        let empty = String::from_str(&e, "");
-        RandomValue {
-            randomness: empty.clone(),
-            signature: empty.clone(),
-            prev_signature: empty,
-        }
+        None
     }
 }
 
